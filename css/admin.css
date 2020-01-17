@@ -42,7 +42,7 @@ header {
 }
 
 .admin-wrapper .left-sidebar ul li a:hover {
-  background-color: #89018b;
+  background-color: #600163;
 }
 
 .admin-wrapper .admin-content {
@@ -86,4 +86,8 @@ td {
 .delete:hover,
 .publish:hover {
   text-decoration: underline;
+}
+
+form div {
+  margin-bottom: 15px;
 }
