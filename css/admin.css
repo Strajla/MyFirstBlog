@@ -1,0 +1,89 @@
+header {
+  background: #610063; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to left,
+    #00a4a7,
+    #610063
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to left,
+    #00a4a7,
+    #610063
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.admin-wrapper {
+  display: flex;
+  height: calc(100% - 66px);
+}
+
+.admin-wrapper .left-sidebar {
+  flex: 2;
+  height: 100%;
+  background: #89018b; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to left,
+    #01898b,
+    #89018b
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #01898b, #89018b);
+}
+.admin-wrapper .left-sidebar ul {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+  color: aliceblue;
+}
+
+.admin-wrapper .left-sidebar ul li a {
+  padding: 18px;
+  display: block;
+  border-bottom: 1px solid #05f7ff;
+}
+
+.admin-wrapper .left-sidebar ul li a:hover {
+  background-color: #89018b;
+}
+
+.admin-wrapper .admin-content {
+  flex: 8;
+  height: 100%;
+  padding: 40px 100px 100px;
+  overflow-y: scroll;
+}
+
+.admin-content .page-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1.1em;
+}
+
+th,
+td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #d3d3d3;
+}
+
+.edit {
+  color: green;
+}
+
+.delete {
+  color: red;
+}
+
+.publish {
+  color: blue;
+}
+
+.edit:hover,
+.delete:hover,
+.publish:hover {
+  text-decoration: underline;
+}
