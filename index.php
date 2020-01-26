@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <script
+      src="https://kit.fontawesome.com/0016173d9b.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Candal|Lora&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+
+    <title>BLOG</title>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <h1 class="logo-text"><span>MyFirst</span>Blog</h1>
+      </div>
+      <i class="fa fa-bars menu-toggle"></i>
+      <ul class="nav">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <!-- <li><a href="#">Sign Up</a></li>
+        <li><a href="#">Login</a></li> -->
+        <li>
+          <a href="#">
+            <i class="fa fa-user"></i>
+            Strahinja Strajla
+            <i class="fa fa-chevron-down" style="font-size:  .8em;"></i>
+          </a>
+          <ul>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#" class="logout">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </header>
+
+    <div class="page-wrapper">
+      <!-- Post Slider     -->
+
+      <div class="post-slider">
+        <h1 class="slider-title">Trending Posts</h1>
+        <i class="fas fa-chevron-left prev"></i>
+        <i class="fas fa-chevron-right next"></i>
+
+        <div class="post-wrapper">
+          <div class="post">
+            <img src="assets/images/pic.jpg" alt="" class="slider-image" />
+            <div class="post-info">
+              <h4>
+                <a href="single.html"
+                  >One day your life will flash before your eyes</a
+                >
+              </h4>
+              <i class="far fa-user">Strahinja Strajla</i>
+              &nbsp;
+              <i class="far fa-calendar"> May 9, 2019</i>
+            </div>
+          </div>
+          <div class="post">
+            <img src="assets/images/pic.jpg" alt="" class="slider-image" />
+            <div class="post-info">
+              <h4>
+                <a href="single.html"
+                  >One day your life will flash before your eyes</a
+                >
+              </h4>
+              <i class="far fa-user">Strahinja Strajla</i>
+              &nbsp;
+              <i class="far fa-calendar"> May 9, 2019</i>
+            </div>
+          </div>
+          <div class="post">
+            <img src="assets/images/pic.jpg" alt="" class="slider-image" />
+            <div class="post-info">
+              <h4>
+                <a href="single.html"
+                  >One day your life will flash before your eyes</a
+                >
+              </h4>
+              <i class="far fa-user">Strahinja Strajla</i>
+              &nbsp;
+              <i class="far fa-calendar"> May 9, 2019</i>
+            </div>
+          </div>
+          <div class="post">
+            <img src="assets/images/pic.jpg" alt="" class="slider-image" />
+            <div class="post-info">
+              <h4>
+                <a href="single.html"
+                  >One day your life will flash before your eyes</a
+                >
+              </h4>
+              <i class="far fa-user">Strahinja Strajla</i>
+              &nbsp;
+              <i class="far fa-calendar"> May 9, 2019</i>
+            </div>
+          </div>
+          <div class="post">
+            <img src="assets/images/pic.jpg" alt="" class="slider-image" />
+            <div class="post-info">
+              <h4>
+                <a href="single.html"
+                  >One day your life will flash before your eyes</a
+                >
+              </h4>
+              <i class="far fa-user">Strahinja Strajla</i>
+              &nbsp;
+              <i class="far fa-calendar"> May 9, 2019</i>
+            </div>
+          </div>
+          <div class="post">
+            <img src="assets/images/pic.jpg" alt="" class="slider-image" />
+            <div class="post-info">
+              <h4>
+                <a href="single.html"
+                  >One day your life will flash before your eyes</a
+                >
+              </h4>
+              <i class="far fa-user">Strahinja Strajla</i>
+              &nbsp;
+              <i class="far fa-calendar"> May 9, 2019</i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Post Slider -->
+
+      <!-- Content -->
+
+      <div class="content clearfix">
+        <div class="main-content">
+          <h1 class="recent-post-title">Recent Posts</h1>
+
+          <div class="post clearfix">
+            <img src="assets/images/pic1.jpg" alt="" class="post-image" />
+            <div class="post-preview">
+              <h2>
+                <a href="single.html"
+                  >Your character's biggest wish is to create a safe world for
+                  xir people.</a
+                >
+              </h2>
+              <i class="far fa-user">Strahinja Strajla</i>
+              &nbsp;
+              <i class="far calendar">Mar 9, 2019</i>
+              <p class="preveiw-text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Quibusdam culpa sint iure reprehenderit aliquid atque autem
+                officiis, ipsum sed molestias, inventore quis sequi laborum
+                error ad iusto dignissimos nihil! Ipsam?
+              </p>
+              <a href="single.html" class="btn read-more">Read More</a>
+            </div>
+          </div>
+          <div class="post clearfix">
+            <img src="assets/images/pic2.jpg" alt="" class="post-image" />
+            <div class="post-preview">
+              <h2>
+                <a href="single.html"
+                  >Your character desperately wants to overthrow the
+                  government.</a
+                >
+              </h2>
+              <i class="far fa-user">Strahinja Strajla</i>
+              &nbsp;
+              <i class="far calendar">Mar 9, 2019</i>
+              <p class="preveiw-text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Quibusdam culpa sint iure reprehenderit aliquid atque autem
+                officiis, ipsum sed molestias, inventore quis sequi laborum
+                error ad iusto dignissimos nihil! Ipsam?
+              </p>
+              <a href="single.html" class="btn read-more">Read More</a>
+            </div>
+          </div>
+          <div class="post clearfix">
+            <img src="assets/images/pic3.jpg" alt="" class="post-image" />
+            <div class="post-preview">
+              <h2>
+                <a href="single.html"
+                  >Most of all, your character wants to be remembered.</a
+                >
+              </h2>
+              <i class="far fa-user">Strahinja Strajla</i>
+              &nbsp;
+              <i class="far calendar">Mar 9, 2019</i>
+              <p class="preveiw-text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Quibusdam culpa sint iure reprehenderit aliquid atque autem
+                officiis, ipsum sed molestias, inventore quis sequi laborum
+                error ad iusto dignissimos nihil! Ipsam?
+              </p>
+              <a href="single.html" class="btn read-more">Read More</a>
+            </div>
+          </div>
+          <div class="post clearfix">
+            <img src="assets/images/pic4.jpg" alt="" class="post-image" />
+            <div class="post-preview">
+              <h2>
+                <a href="single.html"
+                  >Your character's biggest wish is to seek out knowledge and
+                  discover new things.</a
+                >
+              </h2>
+              <i class="far fa-user">Strahinja Strajla</i>
+              &nbsp;
+              <i class="far calendar">Mar 9, 2019</i>
+              <p class="preveiw-text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Quibusdam culpa sint iure reprehenderit aliquid atque autem
+                officiis, ipsum sed molestias, inventore quis sequi laborum
+                error ad iusto dignissimos nihil! Ipsam?
+              </p>
+              <a href="single.html" class="btn read-more">Read More</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar">
+          <div class="section search">
+            <h2 class="section-title">Search</h2>
+            <form action="index.html" method="post">
+              <input
+                type="text"
+                name="search-term"
+                class="text-input"
+                placeholder="Search..."
+              />
+            </form>
+          </div>
+
+          <div class="section topics">
+            <h2 class="section-title">Topics</h2>
+            <ul>
+              <li><a href="#">Poems</a></li>
+              <li><a href="#">Quotes</a></li>
+              <li><a href="#">Fiction</a></li>
+              <li><a href="#">Biography</a></li>
+              <li><a href="#">Motivation</a></li>
+              <li><a href="#">Inspiration</a></li>
+              <li><a href="#">Life Lessons</a></li>
+              <li><a href="#">Knowledge</a></li>
+              <li><a href="#">Imagination</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Content -->
+    </div>
+
+    <!-- Footer -->
+
+    <div class="footer">
+      <div class="footer-content">
+        <div class="footer-section about">
+          <h1 class="logo-text"><span>MyFirst</span>Blog</h1>
+          <p>
+            MyFirstBlog is a fictional blog conceived for purpose of better
+            understanding Web Development. This is @strajla's first solo
+            project. So don't be rude. Site will be avilable on
+            www.MyFirstBlog.com.
+          </p>
+
+          <div class="contact">
+            <span><i class="fas fa-phone"></i>&nbsp; 123-456-789</span>
+            <span><i class="fas fa-envelope "></i>&nbsp; random@gmail.com</span>
+          </div>
+          <div class="socials">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-section links">
+          <h2>Quick Links</h2>
+          <br />
+          <ul>
+            <a href="">
+              <li>Events</li>
+            </a>
+            <a href="">
+              <li>Team</li>
+            </a>
+            <a href="">
+              <li>Mentrors</li>
+            </a>
+            <a href="">
+              <li>Gallery</li>
+            </a>
+            <a href="">
+              <li>Terms and Conditions</li>
+            </a>
+          </ul>
+        </div>
+        <div class="footer-section contact-form">
+          <h2>Contact us</h2>
+          <br />
+          <form action="index.html" method="post">
+            <input
+              type="email"
+              name="email"
+              class="text-input contact-input"
+              placeholder="Your email adress..."
+            />
+            <textarea
+              rows="4"
+              name="message"
+              class="text-input contact-input"
+              placeholder="Your message..."
+            ></textarea>
+            <button type="submit" class="btn btn-big contact-btn">
+              <i class="fas fa-envelope"></i>
+              Send
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        &copy; myfirstblog.com | All credits to @strajla
+      </div>
+    </div>
+
+    <!-- Footer -->
+
+    <!-- JQ -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Slick -->
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
+    ></script>
+
+    <!-- Java Script -->
+    <script src="assets/js/scripts.js"></script>
+  </body>
+</html>
