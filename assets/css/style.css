@@ -127,6 +127,12 @@ header .logo-text span {
   color: #05f7ff;
 }
 
+header .logo-text span:hover {
+  color: #48309e;
+  transition: 0.5s;
+  text-decoration: underline;
+}
+
 header ul {
   float: right;
   margin: 0px;
