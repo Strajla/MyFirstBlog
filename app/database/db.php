@@ -7,22 +7,46 @@ require('index.php');
 
 function dd($value) {
 
-    echo "<pre>", print_r($value), "</pre>";
+    // I added true value here, bcs i want to remove that 1, below that last brace
+
+    echo "<pre>", print_r($value, true), "</pre>";
     die();
 
 }
 
 // This function is for displaying all users from our database.
 
-function selectAll($table) {
+function selectAll($table, $conditions =[]) {
 
     global $conn;
     $sql = "SELECT * FROM $table";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute();
-    $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-    return $records;
+
+    if (empty($conditions)) {
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $records;
+    } else {
+        // Return record that match conditions ...
+        // $sql = "SELECT * FROM $table WHERE username='Joe' AND admin=1";
+
+        $i = 0;
+        foreach ($conditions as $key => $value) {
+            if ($i === 0) {
+                $sql = $sql . " WHERE $key=$value";
+            } else {
+                $sql = $sql . " AND $key=$value";
+            }
+            $i++;
+        }
+        dd($sql);
+    } 
 }
 
-$users = selectAll('users');
+$conditions = [
+    'admin' => 1,
+    'username' => 'Joe'
+];
+
+$users = selectAll('users', $conditions);
 dd($users);
