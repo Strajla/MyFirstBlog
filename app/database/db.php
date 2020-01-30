@@ -33,18 +33,27 @@ function selectAll($table, $conditions =[]) {
         $i = 0;
         foreach ($conditions as $key => $value) {
             if ($i === 0) {
-                $sql = $sql . " WHERE $key=$value";
+                $sql = $sql . " WHERE $key=?";
             } else {
-                $sql = $sql . " AND $key=$value";
+                $sql = $sql . " AND $key=?";
             }
             $i++;
         }
-        dd($sql);
+        // inserting values with bind paramter, it takes 2 arguments. Data and string, represeting the types
+        // that are contained in that data
+        $stmt = $conn->prepare($sql);
+        $values = array_values($conditions); 
+        $types = str_repeat('s', count($values));
+        //  SPLAT operator or better known as (...), will provide list of values 
+        $stmt->bind_param($types, ...$values);
+        $stmt->execute();
+        $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $records;
     } 
 }
 
 $conditions = [
-    'admin' => 1,
+    'admin' => 0,
     'username' => 'Joe'
 ];
 
