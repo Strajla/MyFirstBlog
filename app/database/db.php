@@ -96,17 +96,42 @@ function selectOne($table, $conditions) {
         $records = $stmt->get_result()->fetch_assoc();
         return $records;
 
+// SelectOne function will return only one array        
+
 }
 
-// SelectOne function will return only one array
+function create($table, $data) {
 
-$conditions = [
-    'admin' => 0,
-    'username' => 'Joe'
+    global $conn;
+    $sql = "INSERT INTO users SET ";
+
+    $i = 0;
+    foreach ($data as $key => $value) {
+        if ($i === 0) {
+            $sql = $sql . " $key=?";
+        } else {
+            $sql = $sql . ", $key=?";
+        }
+        $i++;
+    }
+    
+
+    $stmt = executeQuery($sql, $data);
+    $id = $stmt->insert_id;
+    return $id;
+}
+
+
+$data = [
+    'admin' => 1,
+    'username' => 'Jorge',
+    'email' =>'jorge@gmail.com',
+    'password' => 'jorgemasvidal'
+    
 ];
 
 // If we pass 1 in admin section, we will have 0 displays on our screen. Bcs
 // we dont have any user in our database that has admin status
 
-$users = selectOne('users', $conditions);
-dd($users);
+$id = create('users', $data);
+dd($id);
