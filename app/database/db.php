@@ -1,6 +1,6 @@
 <?php
 
-require('index.php');
+require('connect.php');
 
 // Making function, so if anytime want to see our values on screen.
 // We will call this so we can speed up the process. It stands to observe our variables and display our content.
@@ -159,7 +159,3 @@ function delete($table, $id) {
 
 // If we pass 1 in admin section, we will have 0 displays on our screen. Bcs
 // we dont have any user in our database that has admin status
-
-$id = delete('users', 2);
-
-dd($id);

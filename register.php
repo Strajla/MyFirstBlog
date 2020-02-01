@@ -1,6 +1,8 @@
 <?php include("path.php"); ?>
+<?php include(ROOT_PATH . "/app/controllers/users.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -23,7 +25,7 @@
   <?php include(ROOT_PATH . "/app/includes/header.php"); ?>
 
     <div class="auth-content">
-      <form action="register.html" method="post">
+      <form action="register.php" method="post">
         <h2 class="form-title">Register</h2>
 
         <!-- <div class="msg error">
@@ -47,7 +49,7 @@
 
         <div>
           <label>Password Confirmation</label>
-          <input type="text" name="passwordConf" class="text-input" />
+          <input type="password" name="passwordConf" class="text-input" />
         </div>
 
         <div>
