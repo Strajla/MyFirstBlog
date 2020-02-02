@@ -21,18 +21,18 @@ if(isset($_POST['register-btn'])) {
 
     // This is for protecting our data, password encrtyption with this function, who takes 2paramteres
     // One is what user typed in filed, and other one is constant
-    $_POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        $_POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-    $user_id = create('users', $_POST);
-    $user = selectOne('users', ['id'=> $user_id]);
+        $user_id = create('users', $_POST);
+        $user = selectOne('users', ['id'=> $user_id]);
 
     dd($user);
 
-    }   else {
-          $username = $_POST['username'];
-          $email = $_POST['email'];
-          $password = $_POST['password'];
-          $passwordConf = $_POST['passwordConf'];
+    } else {
+        $username = $_POST['username'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $passwordConf = $_POST['passwordConf'];
     }
   
   }
