@@ -26,7 +26,22 @@ if(isset($_POST['register-btn'])) {
         $user_id = create('users', $_POST);
         $user = selectOne('users', ['id'=> $user_id]);
 
-    dd($user);
+
+        // Log user in, we will use sessions
+        $_SESSION['id'] = $user['id'];
+        // Here we are pulling username into session, bcs we want it to be displayed in navbar righ corner
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['admin'] = $user['admin'];
+        // Here we need to pull admin, bcs we want to know is user is admin or no, so we can display dashboard or leave it blank
+        $_SESSION['message'] = 'You are now logged in';
+        $_SESSION['type'] = 'success';
+        // By giving it value of string named 'succes' we will be displaying green message, bcs we identify it as class in our css
+        header('location: ' . BASE_URL . '/index.php');
+        exit();
+        // There is no point of executing the code that comes after
+
+
+
 
     } else {
         $username = $_POST['username'];

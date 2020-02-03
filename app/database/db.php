@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 require('connect.php');
 
 // Making function, so if anytime want to see our values on screen.
