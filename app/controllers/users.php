@@ -11,7 +11,7 @@ $passwordConf = '';
 $table = 'users';
 
 function loginUser($user) {
-    $_SESSION['id'] = $user['id'];
+        $_SESSION['id'] = $user['id'];
         // Here we are pulling username into session, bcs we want it to be displayed in navbar righ corner
         $_SESSION['username'] = $user['username'];
         $_SESSION['admin'] = $user['admin'];
