@@ -1,6 +1,6 @@
 <?php
 
-function validateUser ($user) {
+function validateUser($user) {
 
     $errors = array();
 
@@ -31,6 +31,23 @@ function validateUser ($user) {
         $existingUser = selectOne('users', ['email' => $user['email']]);
         if (isset($existingUser)) {
             array_push($errors, 'Email is taken or alerady exists');
+        }
+
+    return $errors;
+}
+
+function validateLogin($user) {
+
+    $errors = array();
+
+        $errors = array();
+    
+        if (empty($user['username'])) {
+            array_push($errors, 'Username is required');
+        }
+
+        if (empty($user['password'])) {  
+            array_push($errors, 'Password is required');
         }
 
     return $errors;

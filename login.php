@@ -1,4 +1,5 @@
 <?php include("path.php");  ?>
+<?php include(ROOT_PATH . "/app/controllers/users.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -23,21 +24,24 @@
   <?php include(ROOT_PATH . "/app/includes/header.php"); ?>
 
     <div class="auth-content">
-      <form action="login.html" method="post">
+      <form action="login.php" method="post">
         <h2 class="form-title">Login</h2>
 
+        <?php include(ROOT_PATH . "/app/helpers/formErrors.php"); ?>
+        
         <div>
           <label>Username</label>
-          <input type="text" name="username" class="text-input" />
+          <input type="text" name="username" value = "<?php echo $username ?>" class="text-input" />
         </div>
-
+              <!-- We are able to use this values bcs we are including users.php, and at the top of this users.php 
+              file we are initializing this values into enmpty strings -->
         <div>
           <label>Password</label>
-          <input type="password" name="password" class="text-input" />
+          <input type="password" name="password" value = "<?php echo $password ?>" class="text-input" />
         </div>
 
         <div>
-          <button type="submit" name="register-btn" class="btn btn-big">
+          <button type="submit" name="login-btn" class="btn btn-big">
             Login
           </button>
         </div>
