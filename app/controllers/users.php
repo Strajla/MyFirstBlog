@@ -36,12 +36,17 @@ if(isset($_POST['register-btn'])) {
         $_SESSION['message'] = 'You are now logged in';
         $_SESSION['type'] = 'success';
         // By giving it value of string named 'succes' we will be displaying green message, bcs we identify it as class in our css
-        header('location: ' . BASE_URL . '/index.php');
+       
+        // If our user is admin, redirect him to dashboard, if he is regular user,redirect him to home page
+        if ($_SESSION['admin']) {
+            header('location: ' . BASE_URL . '/admin/dashboard.php');
+        }   else {
+            header('location: ' . BASE_URL . '/index.php');
+        }
+
         exit();
+
         // There is no point of executing the code that comes after
-
-
-
 
     } else {
         $username = $_POST['username'];

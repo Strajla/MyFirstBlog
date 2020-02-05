@@ -24,6 +24,7 @@
   <body>
     
    <?php include(ROOT_PATH . "/app/includes/header.php"); ?>
+   <?php include(ROOT_PATH . "/app/includes/messages.php"); ?> 
 
     <div class="page-wrapper">
       <!-- Post Slider     -->

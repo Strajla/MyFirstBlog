@@ -71,14 +71,14 @@ a {
 }
 
 .msg {
-  width: 100%;
+  width: absolute;
   margin: 5px 5px;
   padding: 8px;
   border-radius: 5px;
   list-style: none;
 }
 
-.succes {
+.success {
   color: #3a6e3a;
   border: 1px solid #3a6e3a;
   background-color: #bcf5bc;
