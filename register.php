@@ -23,6 +23,7 @@
   <body>
    
   <?php include(ROOT_PATH . "/app/includes/header.php"); ?>
+  <?php include(ROOT_PATH . "/app/includes/messages.php"); ?>
 
     <div class="auth-content">
       <form action="register.php" method="post">
