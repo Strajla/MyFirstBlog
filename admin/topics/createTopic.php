@@ -48,7 +48,7 @@
       <div class="admin-content">
         <div class="button-group">
           <a href="createTopic.php" class="btn btn-big">Add Topics</a>
-          <a href="indexTopic.php" class="btn btn-big">Manage Topics</a>
+          <a href="indexTopics.php" class="btn btn-big">Manage Topics</a>
         </div>
 
         <div class="content">

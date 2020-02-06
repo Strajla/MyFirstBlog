@@ -26,7 +26,7 @@
     <!-- ADMIN CSS -->
 
     <link rel="stylesheet" href="../../assets/css/admin.css" />
-    <title>Admin Section - Edit Topic</title>
+    <title>Admin Section - Add Users</title>
 
     <!-- CK EDITOR -->
 
@@ -47,25 +47,45 @@
 
       <div class="admin-content">
         <div class="button-group">
-          <a href="createTopic.php" class="btn btn-big">Add Topics</a>
-          <a href="indexTopics.php" class="btn btn-big">Manage Topics</a>
+          <a href="createUser.php" class="btn btn-big">Add User</a>
+          <a href="indexUsers.php" class="btn btn-big">Manage Users</a>
         </div>
 
         <div class="content">
-          <h2 class="page-title">Edit Topic</h2>
+          <h2 class="page-title">Add User</h2>
 
-          <form action="create-post.html" method="post">
+          <form action="create-user.html" method="post">
+         
             <div>
-              <label>Name</label>
-              <input type="text" name="name" class="text-input" />
-            </div>
+                <label>Username</label>
+                <input type="text" name="username" class="text-input" />
+              </div>
+      
+              <div>
+                <label>Email</label>
+                <input type="email" name="email" class="text-input" />
+              </div>
+      
+              <div>
+                <label>Password</label>
+                <input type="password" name="password" class="text-input" />
+              </div>
+      
+              <div>
+                <label>Password Confirmation</label>
+                <input type="text" name="passwordConf" class="text-input" />
+              </div>
 
-            <div>
-              <label>Description</label>
-              <textarea name="description" id="body"></textarea>
-            </div>
-            <div>
-              <button type="submit" class="btn btn-big">Update Topic</button>
+             
+                <div>
+                    <label>Role</label>
+                    <select name="role" class="text-input">
+                      <option value="Author">Author</option>
+                      <option value="Admin">Admin</option>
+                    </select>
+                </div>
+
+              <button type="submit" class="btn btn-big">Add User</button>
             </div>
           </form>
 

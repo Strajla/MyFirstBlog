@@ -26,7 +26,7 @@
     <!-- ADMIN CSS -->
 
     <link rel="stylesheet" href="../../assets/css/admin.css" />
-    <title>Admin Section - Edit Topic</title>
+    <title>Admin Section - Edit Post</title>
 
     <!-- CK EDITOR -->
 
@@ -47,25 +47,41 @@
 
       <div class="admin-content">
         <div class="button-group">
-          <a href="createTopic.php" class="btn btn-big">Add Topics</a>
-          <a href="indexTopics.php" class="btn btn-big">Manage Topics</a>
+          <a href="createPost.php" class="btn btn-big">Add Post</a>
+          <a href="indexPosts.php" class="btn btn-big">Manage Posts</a>
         </div>
 
         <div class="content">
-          <h2 class="page-title">Edit Topic</h2>
+          <h2 class="page-title">Edit Post</h2>
 
           <form action="create-post.html" method="post">
             <div>
-              <label>Name</label>
-              <input type="text" name="name" class="text-input" />
+              <label>Title</label>
+              <input type="text" name="title" class="text-input" />
             </div>
 
             <div>
-              <label>Description</label>
-              <textarea name="description" id="body"></textarea>
+              <label>Body</label>
+              <textarea name="body" id="body"></textarea>
+            </div>
+
+            <div>
+              <label>Image</label>
+              <input type="file" name="image" class="text-input" />
+            </div>
+
+            <div>
+              <label>Topic</label>
+              <select name="topic" class="text-input">
+                <option value="Poems">Poems</option>
+                <option value="Quotes">Quotes</option>
+                <option value="Fiction">Fiction</option>
+                <option value="Biography">Biography</option>
+                <option value="Motivation">Motivation</option>
+              </select>
             </div>
             <div>
-              <button type="submit" class="btn btn-big">Update Topic</button>
+              <button type="submit" class="btn btn-big">Update post</button>
             </div>
           </form>
 
