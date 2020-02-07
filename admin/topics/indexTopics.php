@@ -1,4 +1,5 @@
-<?php include("../../path.php") ?>
+<?php include("../../path.php"); ?>
+<?php include(ROOT_PATH . "/app/controllers/topics.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -55,27 +56,26 @@
         <div class="content">
           <h2 class="page-title">Manage Topics</h2>
 
+          <?php include(ROOT_PATH . "/app/includes/messages.php"); ?> 
+
           <table>
             <thead>
               <th>SN</th>
               <th>Name</th>
               <th colspan="2">Action</th>
-            </thead>
-          
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>Poetry</td>
-              <td><a href="#" class="edit">Edit</a></td>
-              <td><a href="#" class="delete">Delete</a></td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Life Lessons</td>
-              <td><a href="#" class="edit">Edit</a></td>
-              <td><a href="#" class="delete">Delete</a></td>
-
-            </tr>
+            </thead>          
+          <!-- We are going to loop trough topics from db, and display table row for each of the records -->
+            <tbody>
+              <?php foreach ($topics as $key => $topic): ?>
+               <tr>
+                <!-- They key starts counting from zero, we will display key plus one -->
+                  <td><?php echo $key + 1; ?></td>
+                  <td><?php echo $topic['name']; ?></td>
+                  <td><a href="editTopic.php?id=<?php echo $topic['id']; ?>" class="edit">Edit</a></td>
+                  <td><a href="#" class="delete">Delete</a></td>
+            </tr>     
+        <?php endforeach; ?>
+           
           </tbody>
         </div>
       </div>
