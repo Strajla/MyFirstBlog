@@ -1,6 +1,6 @@
 <?php
   include("path.php");
-  include(ROOT_PATH . "/app/database/db.php");
+  include(ROOT_PATH . "../app/controllers/topics.php"); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -222,19 +222,14 @@
             </form>
           </div>
 
-          <div class="section topics">
-            <h2 class="section-title">Topics</h2>
-            <ul>
-              <li><a href="#">Poems</a></li>
-              <li><a href="#">Quotes</a></li>
-              <li><a href="#">Fiction</a></li>
-              <li><a href="#">Biography</a></li>
-              <li><a href="#">Motivation</a></li>
-              <li><a href="#">Inspiration</a></li>
-              <li><a href="#">Life Lessons</a></li>
-              <li><a href="#">Knowledge</a></li>
-              <li><a href="#">Imagination</a></li>
-            </ul>
+        <div class="section topics">
+          <h2 class="section-title">Topics</h2>
+          <ul>
+        <!-- $topics is array of arrays -->
+            <?php foreach ($topics as $key => $topic): ?>
+              <li><a href="#"><?php echo $topic['name']; ?></a></li>
+            <?php endforeach; ?>
+          </ul>
           </div>
         </div>
       </div>

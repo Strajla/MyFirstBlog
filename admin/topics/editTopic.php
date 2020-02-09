@@ -55,6 +55,8 @@
         <div class="content">
           <h2 class="page-title">Edit Topic</h2>
 
+          <?php include(ROOT_PATH . "/app/helpers/formErrors.php"); ?>
+
           <form action="editTopic.php" method="post">
           <input type="hidden" name="id" value="<?php echo $id; ?>"/>
             <div>

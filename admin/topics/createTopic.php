@@ -55,10 +55,12 @@
         <div class="content">
           <h2 class="page-title">Add Topic</h2>
 
+          <?php include(ROOT_PATH . "/app/helpers/formErrors.php"); ?>
+
           <form action="createTopic.php" method="post">
             <div>
               <label>Name</label>
-              <input type="text" name="name" class="text-input" />
+              <input type="text" name="name" value= "<?php echo $name ?>" class="text-input" />
             </div>
 
             <div>
@@ -66,7 +68,7 @@
               <textarea name="description" id="body"></textarea>
             </div>
             <div>
-              <button type="submit" name="add-topic" class="btn btn-big">Add Topic</button>
+              <button type="submit" name="add-topic" value= "<?php echo $description ?>" class="btn btn-big">Add Topic</button>
             </div>
           </form>
 

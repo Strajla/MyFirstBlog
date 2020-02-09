@@ -72,7 +72,8 @@
                   <td><?php echo $key + 1; ?></td>
                   <td><?php echo $topic['name']; ?></td>
                   <td><a href="editTopic.php?id=<?php echo $topic['id']; ?>" class="edit">Edit</a></td>
-                  <td><a href="#" class="delete">Delete</a></td>
+                  <!-- It will splend the id called delete id and it will take topic id and send it as GET request and reconect it to indexTopics.php -->
+                  <td><a href="indexTopics.php?del_id=<?php echo $topic['id']; ?>" class="delete">Delete</a></td>
             </tr>     
         <?php endforeach; ?>
            
