@@ -14,7 +14,7 @@ function validateTopic($topic) {
 
 // Name is unique in topics and table and we will select one record where name is equal to name the user provided
         $existingTopic = selectOne('topics', ['name' => $topic['name']]);
-        if (isset($existingTopic)) {
+        if ($existingTopic) {
             array_push($errors, 'Name alerady exists');
         }
 

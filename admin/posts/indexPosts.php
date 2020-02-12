@@ -1,4 +1,5 @@
 <?php include("../../path.php") ?>
+<?php include(ROOT_PATH . "/app/controllers/posts.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -64,23 +65,34 @@
             </thead>
           
           <tbody>
+
+
+          <!-- Looping trough what we got from DB -->
+          <?php foreach ($posts as $key => $post): ?>
             <tr>
-              <td>1</td>
-              <td>This is the first post</td>
+            <!-- Key starts from 0 sto we are adding +1 so he can start countgin -->
+              <td><?php echo $key + 1; ?></td>
+              <td><?php echo $post['title'] ?></td>
               <td>Strahinja</td>
               <td><a href="#" class="edit">Edit</a></td>
               <td><a href="#" class="delete">Delete</a></td>
+            <?php if ($post['published']): ?>
+              <td><a href="#" class="unpublish">Unpublish</a></td>
+            <?php else: ?>
               <td><a href="#" class="publish">Publish</a></td>
+            <?php endif; ?>
+              
             </tr>
-            <tr>
-              <td>2</td>
-              <td>This is the second post</td>
-              <td>Milenko</td>
-              <td><a href="#" class="edit">Edit</a></td>
-              <td><a href="#" class="delete">Delete</a></td>
-              <td><a href="#" class="publish">Publish</a></td>
-            </tr>
+
+          <?php endforeach; ?>
+
+
+         
+
           </tbody>
+
+        </table>
+
         </div>
       </div>     
 

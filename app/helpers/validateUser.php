@@ -29,7 +29,7 @@ function validateUser($user) {
         // It takes two arguments, users table and condiition. Where email column is equal to email user provided in our contact form.
         // If existing user existing, we will push error message
         $existingUser = selectOne('users', ['email' => $user['email']]);
-        if (isset($existingUser)) {
+        if ($existingUser) {
             array_push($errors, 'Email is taken or alerady exists');
         }
 
