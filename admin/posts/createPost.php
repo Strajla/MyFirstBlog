@@ -55,15 +55,17 @@
         <div class="content">
           <h2 class="page-title">Add Post</h2>
 
+          <?php include(ROOT_PATH .  '/app/helpers/formErrors.php'); ?>
+
           <form action="createPost.php" method="post">
             <div>
               <label>Title</label>
-              <input type="text" name="title" class="text-input" />
+              <input type="text" name="title" value="<?php echo $title ?>" class="text-input" />
             </div>
 
             <div>
               <label>Body</label>
-              <textarea name="body" id="body"></textarea>
+              <textarea name="body" id="body"><?php echo $body ?></textarea>
             </div>
 
             <div>
@@ -77,10 +79,25 @@
                 <option value=""></option>
                 <!-- Looping trough topics array that we fetch in our db, for each topic we will display option and value of option, we will print name of the topic -->
                 <?php foreach ($topics as $key => $topic): ?>
-                  <option value="<?php echo $topic['id']; ?>"> <?php echo $topic['name']; ?> </option>
+
+                  <!-- Checking if the variable topic_id is not empty, which means that user selected it before
+                   and we are checking if the topic they selected is the same as thss particular topic in the topic array that we are looping over -->
+                  <?php if (!empty($topic_id) && $topic_id == $topic['id'] ): ?>
+                    <option selected value="<?php echo $topic['id']; ?>"> <?php echo $topic['name']; ?> </option>
+                  <?php else: ?>
+                    <option value="<?php echo $topic['id']; ?>"> <?php echo $topic['name']; ?> </option>
+                  <?php endif; ?>
+
+                
                 <?php endforeach; ?>
                
               </select>
+            </div>
+            <div>
+                <label>
+                    <input type="checkbox" name="published">
+                    Publish
+                </label>
             </div>
             <div>
               <button type="submit" name="add-post" class="btn btn-big">Add post</button>
