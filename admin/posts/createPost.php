@@ -57,7 +57,8 @@
 
           <?php include(ROOT_PATH .  '/app/helpers/formErrors.php'); ?>
 
-          <form action="createPost.php" method="post">
+            <!-- This "multipart/form-data specifies how the form data will be encoded before sending to server -->
+          <form action="createPost.php" method="post" enctype="multipart/form-data">
             <div>
               <label>Title</label>
               <input type="text" name="title" value="<?php echo $title ?>" class="text-input" />
@@ -94,10 +95,17 @@
               </select>
             </div>
             <div>
+              <?php if (empty($published)): ?>
                 <label>
                     <input type="checkbox" name="published">
                     Publish
                 </label>
+              <?php else: ?>
+                <label>
+                    <input type="checkbox" name="published" checked>
+                    Publish
+                </label>
+              <?php endif; ?>    
             </div>
             <div>
               <button type="submit" name="add-post" class="btn btn-big">Add post</button>

@@ -24,11 +24,12 @@ if (isset($_POST['add-topic'])) {
 
     if (count($errors) === 0) {
     unset($_POST['add-topic']);
-    // Specificing name of the talbe and past the data, it will makee new topic and return topic ID
+    // Specificing name of the table and past the data, it will makee new topic and return topic ID
     $topic_id = create($table, $_POST);
     $_SESSION['message'] = 'Topic created succesfully';
     $_SESSION['type'] = 'success';
     header('location: ' . BASE_URL . '/admin/topics/indexTopics.php');
+
     exit();
     } else {
         $name = $_POST['name'];
@@ -48,6 +49,8 @@ if (isset($_GET['id'])) {
     $id = $topic['id'];
     $name = $topic['name'];
     $description = $topic['description'];
+    $_POST['description'] = htmlentities ($_POST['description']);
+    
 }
 
 
