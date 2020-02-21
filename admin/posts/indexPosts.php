@@ -77,8 +77,10 @@
               <td><?php echo $key + 1; ?></td>
               <td><?php echo $post['title'] ?></td>
               <td>Strahinja</td>
-              <td><a href="#" class="edit">Edit</a></td>
-              <td><a href="#" class="delete">Delete</a></td>
+              <!-- We need id bcs we are fetching post from the db, so we can edit that particu
+              <!-- When we click on id button we are sending ID variable to URL and sending it to editPhp file -->
+              <td><a href="editPost.php?id=<?php echo $post['id']; ?>" class="edit">Edit</a></td>
+              <td><a href="editPost.php?delete_id=<?php echo $post['id']; ?>" class="delete">Delete</a></td>
             <?php if ($post['published']): ?>
               <td><a href="#" class="unpublish">Unpublish</a></td>
             <?php else: ?>

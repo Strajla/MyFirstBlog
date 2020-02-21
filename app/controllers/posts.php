@@ -13,10 +13,35 @@ $posts = selectAll($table);
 
 
 $errors = array();
+$id  = "";
 $title  = "";
 $body  =  "";
 $topic_id  = ""; 
 $published = "";
+
+// GET help us recive parametars from URL, we are selecting where id is equal to the id, who is sent via URl
+if (isset($_GET['id'])) {
+    $post = selectOne($table, ['id' => $_GET['id']]);
+
+// We have fetched all data from the database, and we put it in our variables
+    $id = $post['id'];
+    $title  = $post['title'];
+    $body  =  $post['body'];
+    $topic_id  = $post['topic_id']; 
+    $published = $post['published'];
+}
+
+
+// This if statement here is deleting our post, we are getting the delete and when we delete id,
+// We will be calling the delete method, and passing the name of the table, posts table and the id to
+if (isset($_GET['delete_id'])) {
+    $count = delete($table, $_GET['delete_id']);
+    $_SESSION['message'] = 'Post deleted successfully';
+    $_SESSION['type'] = 'success';
+    header("location:" . BASE_URL . "/admin/posts/indexPosts.php");
+    exit();
+}
+
 
 // Checking if user clicked on button
 if (isset($_POST['add-post'])) {
@@ -63,6 +88,7 @@ if (isset($_POST['add-post'])) {
         $_SESSION['message'] = 'Post created successfully';
         $_SESSION['type'] = 'success';
         header("location:" . BASE_URL . "/admin/posts/indexPosts.php");
+        exit();
     } else {
         // We make sure our form stays in place
         $title  = $_POST['title'];
@@ -71,3 +97,49 @@ if (isset($_POST['add-post'])) {
         $published  = isset($_POST['published']) ? 1 : 0;
     } 
 }
+
+
+
+
+            // Checking if update button is clicked
+
+    if (isset($_POST['update-post'])) {
+        $errors = validatePosts($_POST);
+
+            // Checking if image is sent to the post, and if it is we will sent it, and store it in image variable
+        if(!empty($_FILES['image']['name'])) {
+        
+            $image_name = time() . '_' . ($_FILES)['image']['name'];
+            $destination = ROOT_PATH . "/assets/images/" . $image_name;
+            $result = move_uploaded_file($_FILES['image']['tmp_name'], $destination);
+
+            if ($result) {
+                $_POST['image'] = $image_name;
+            } else {
+                array_push($errors, "Failed to upload image");
+            }
+            
+        } else {
+            array_push($errors, "Post image required");
+        }
+
+            // Counting if there is any errors
+        if (count($errors) == 0) {
+            $id = $_POST['id'];
+            // We jsut need id to inform our update function, and we are indetifying it using ID
+            unset($_POST['update-post'], $_POST['id']);
+            $_POST['user_id'] = 1;
+            $_POST['published'] = isset($_POST['published']) ? 1 : 0;
+            $_POST['body'] = htmlentities($_POST['body']);
+
+            $post_id = update($table, $id, $_POST);
+            $_SESSION['message'] = 'Post updated successfully';
+            $_SESSION['type'] = 'success';
+            header("location:" . BASE_URL . "/admin/posts/indexPosts.php");
+        } else {
+            $title  = $_POST['title'];
+            $body  = $_POST['body'];
+            $topic_id  = $_POST['topic_id'];
+            $published  = isset($_POST['published']) ? 1 : 0;
+        } 
+    }

@@ -1,4 +1,5 @@
 <?php include("../../path.php") ?>
+<?php include(ROOT_PATH . "/app/controllers/posts.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -54,34 +55,62 @@
         <div class="content">
           <h2 class="page-title">Edit Post</h2>
 
-          <form action="create-post.html" method="post">
-            <div>
-              <label>Title</label>
-              <input type="text" name="title" class="text-input" />
-            </div>
+          <!-- Adding multipart/form-data bcs we will upload image here aswell -->
+          <form action="editPost.php" method="post" enctype="multipart/form-data">
 
+            <!-- This will be the gidden input field bcs ID of the post is remaining the same, user wont be able to change id of the post -->
+            <input type="hidden" name="id" value="<?php echo $id ?>"/>
+
+          <!--  -->
+
+          <div>
+              <label>Title</label>
+              <input type="text" name="title" value="<?php echo $title ?>" class="text-input" />
+            </div>
             <div>
               <label>Body</label>
-              <textarea name="body" id="body"></textarea>
+              <textarea name="body" id="body"><?php echo $body ?></textarea>
             </div>
 
             <div>
               <label>Image</label>
               <input type="file" name="image" class="text-input" />
             </div>
-
             <div>
               <label>Topic</label>
-              <select name="topic" class="text-input">
-                <option value="Poems">Poems</option>
-                <option value="Quotes">Quotes</option>
-                <option value="Fiction">Fiction</option>
-                <option value="Biography">Biography</option>
-                <option value="Motivation">Motivation</option>
+              <select name="topic_id" class="text-input">
+                <option value=""></option>
+                <!-- Looping trough topics array that we fetch in our db, for each topic we will display option and value of option, we will print name of the topic -->
+                <?php foreach ($topics as $key => $topic): ?>
+
+                  <!-- Checking if the variable topic_id is not empty, which means that user selected it before
+                   and we are checking if the topic they selected is the same as thss particular topic in the topic array that we are looping over -->
+                  <?php if (!empty($topic_id) && $topic_id == $topic['id'] ): ?>
+                    <option selected value="<?php echo $topic['id']; ?>"> <?php echo $topic['name']; ?> </option>
+                  <?php else: ?>
+                    <option value="<?php echo $topic['id']; ?>"> <?php echo $topic['name']; ?> </option>
+                  <?php endif; ?>
+
+                
+                <?php endforeach; ?>
+               
               </select>
             </div>
             <div>
-              <button type="submit" class="btn btn-big">Update post</button>
+            <!-- If its published we will display the publish field  without checking it-->
+              <?php if (empty($published) && $published == 0): ?>
+                <label>
+                    <input type="checkbox" name="published">
+                    Publish
+                </label>
+              <?php else: ?>
+                <label>
+                    <input type="checkbox" name="published" checked>
+                    Publish
+                </label>
+              <?php endif; ?>    
+            </div>
+              <button type="submit" name = "update-post" class="btn btn-big">Update post</button>
             </div>
           </form>
 
