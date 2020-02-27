@@ -43,6 +43,18 @@ if (isset($_GET['delete_id'])) {
 }
 
 
+// Updating publish field 
+if (isset($_GET['published']) && isset($_GET['p_id'])) {
+    $published = $_GET['published'];
+    $p_id = $_GET['p_id'];
+    $count = update($table, $p_id, ['published' => $published]);
+    $_SESSION['message'] = 'Post published state changed';
+    $_SESSION['type'] = 'success';
+    header("location:" . BASE_URL . "/admin/posts/indexPosts.php");
+    exit();
+}
+
+
 // Checking if user clicked on button
 if (isset($_POST['add-post'])) {
     // Validating our posts, and passing all post values from our form

@@ -81,10 +81,15 @@
               <!-- When we click on id button we are sending ID variable to URL and sending it to editPhp file -->
               <td><a href="editPost.php?id=<?php echo $post['id']; ?>" class="edit">Edit</a></td>
               <td><a href="editPost.php?delete_id=<?php echo $post['id']; ?>" class="delete">Delete</a></td>
+
+
             <?php if ($post['published']): ?>
-              <td><a href="#" class="unpublish">Unpublish</a></td>
+
+                <!-- If we want to unpuslibh the post we need to know that post, by that i mean ID, we need published variable so we can unpublish it -->
+                <!-- 0 stand for false and 1 for true -->
+              <td><a href="editPost.php?published=0&p_id=<?php echo $post ['id'] ?>" class="unpublish">Unpublish</a></td>
             <?php else: ?>
-              <td><a href="#" class="publish">Publish</a></td>
+              <td><a href="editPost.php?published=1&p_id=<?php echo $post ['id'] ?>"" class="publish">Publish</a></td>
             <?php endif; ?>
               
             </tr>

@@ -1,4 +1,6 @@
 <?php include("../../path.php") ?>
+<!-- Here we are including users.php form controllers bcs that is the place where session starts, in order to dislpay messages we need to start session -->
+<?php include (ROOT_PATH . "/app/controllers/users.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -52,6 +54,9 @@
 
         <div class="content">
           <h2 class="page-title">Manage Users</h2>
+
+          <?php include(ROOT_PATH . "/app/includes/messages.php") ?>
+
 
           <table>
             <thead>
