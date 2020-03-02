@@ -55,35 +55,47 @@
         <div class="content">
           <h2 class="page-title">Add User</h2>
 
+          <!-- Here we are including errors from helpers folder so if, user provides empty fileds, he will get error messages -->
+          <?php include(ROOT_PATH . "/app/helpers/formErrors.php"); ?>
+
           <form action="createUser.php" method="post">
-         
-            <div>
+          
+            <!-- WE will add value to each input field, and echo the info from form so that the data user provided will still be avilable after refreshing the page -->
+          <div>
                 <label>Username</label>
-                <input type="text" name="username" class="text-input" />
+                <input type="text" name="username" value = "<?php echo $username; ?>" class="text-input" />
               </div>
       
               <div>
                 <label>Email</label>
-                <input type="email" name="email" class="text-input" />
+                <input type="email" name="email" value = "<?php echo $email; ?>" class="text-input" />
               </div>
       
               <div>
                 <label>Password</label>
-                <input type="password" name="password" class="text-input" />
+                <input type="password" name="password" value = "<?php echo $password; ?>" class="text-input" />
               </div>
       
               <div>
                 <label>Password Confirmation</label>
-                <input type="text" name="passwordConf" class="text-input" />
+                <input type="password" name="passwordConf" class="text-input" />
               </div>
 
               <div>
-                  <label>
+                <!-- Since this value is boolena we are checking if admin value is set and admin variable is true, it will be checked it fill remain checked -->
+                <?php if (isset($admin) && $admin ==1) : ?>
+                  <label>    
+                  <input type="checkbox" name = "admin" checked>
+                    Admin               
+                  </label>        
+                <?php else: ?>
+                  <label>    
                   <input type="checkbox" name = "admin">
                     Admin               
                   </label> 
+          <div>
+                <?php endif; ?>  
               </div>
-
               <button type="submit" name = "create-admin" class="btn btn-big">Add User</button>
             </div>
           </form>

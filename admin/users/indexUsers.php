@@ -62,26 +62,30 @@
             <thead>
               <th>SN</th>
               <th>Username</th>
-              <th>Role</th>
+              <th>Email adress</th>
               <th colspan="2">Action</th>
             </thead>
           
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Strahinja</td>
-              <td>Admin</td>
-              <td><a href="#" class="edit">Edit</a></td>
-              <td><a href="#" class="delete">Delete</a></td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Jorge</td>
-              <td>Author</td>
-              <td><a href="#" class="edit">Edit</a></td>
-              <td><a href="#" class="delete">Delete</a></td>
 
-            </tr>
+            <!-- Loopping trough all users, and for each user i will display this table row -->
+            <?php foreach ($admin_users   as $key => $user): ?>
+
+              <tr>
+                <!-- Displaying the key, he will be counter, he starts from 1 -->
+                <td><?php echo $key + 1; ?></td>
+                <!-- Displaying name -->
+                <td><?php echo $user['username']; ?></td>
+                <!-- Displaying email from admin user -->
+                <td><?php echo $user ['email']; ?></td>
+                <td><a href="editUser.php?id=<?php echo $user['id']; ?>" class="edit">Edit</a></td>
+                <!-- We will redirect user to the same page and delete user using his ID -->
+                <td><a href="indexUsers.php?delete_id=<?php echo $user['id']; ?>" class="delete">Delete</a></td>
+              </tr>
+
+            <?php endforeach; ?>
+
+            
           </tbody>
         </div>
       </div>
