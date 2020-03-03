@@ -87,7 +87,8 @@ if (isset($_POST['add-post'])) {
     // validatePosts returns array of errors, we make sure that errors array dosent have any errors in it
     if (count($errors) == 0) {
         unset($_POST['add-post']);
-        $_POST['user_id'] = 1;
+        // Here we are setting the id from sessions bcs, user clicks on create post he is logged in
+        $_POST['user_id'] = $_SESSION['id'];
         // This is just shorcut of ilsef statement if users selected the published filed, it will be set to 1 TRUE,
         //  otherwise it will be 0 FALSE
         $_POST['published'] = isset($_POST['published']) ? 1 : 0;
@@ -140,7 +141,7 @@ if (isset($_POST['add-post'])) {
             $id = $_POST['id'];
             // We jsut need id to inform our update function, and we are indetifying it using ID
             unset($_POST['update-post'], $_POST['id']);
-            $_POST['user_id'] = 1;
+            $_POST['user_id'] = $_SESSION['id'];
             $_POST['published'] = isset($_POST['published']) ? 1 : 0;
             $_POST['body'] = htmlentities($_POST['body']);
 
