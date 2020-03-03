@@ -28,12 +28,18 @@ function validateUser($user) {
         // Here we will be checking if email alerady exists, by using selectOne function
         // It takes two arguments, users table and condiition. Where email column is equal to email user provided in our contact form.
         // If existing user existing, we will push error message
-        $existingUser = selectOne('users', ['email' => $user['email']]);
-        if ($existingUser) {
-            array_push($errors, 'Email is taken or alerady exists');
-        }
 
-    return $errors;
+        $existingUser = selectOne('users', ['email' => $user['email']]);
+            if ($existingUser) {
+                if(isset($user['update-user']) && $existingUser['id'] != $user['id']) {
+                    array_push($errors, 'User with that email alerady exists');
+                }
+
+                if (isset($user['create-admin'])) {
+                    array_push($errors, 'Email alerady exists');
+                }
+            }
+        return $errors;
 }
 
 function validateLogin($user) {

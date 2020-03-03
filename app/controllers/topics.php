@@ -49,7 +49,7 @@ if (isset($_GET['id'])) {
     $id = $topic['id'];
     $name = $topic['name'];
     $description = $topic['description'];
-    $_POST['description'] = htmlentities ($_POST['description']);
+    
     
 }
 

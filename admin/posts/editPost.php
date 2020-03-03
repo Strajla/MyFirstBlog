@@ -55,6 +55,8 @@
         <div class="content">
           <h2 class="page-title">Edit Post</h2>
 
+          <?php include(ROOT_PATH . "/app/helpers/formErrors.php"); ?>
+
           <!-- Adding multipart/form-data bcs we will upload image here aswell -->
           <form action="editPost.php" method="post" enctype="multipart/form-data">
 
