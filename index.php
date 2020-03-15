@@ -1,6 +1,22 @@
 <?php
   include("path.php");
   include(ROOT_PATH . "../app/controllers/topics.php"); 
+
+  $posts = array();
+  $postsTitle = 'Recent Posts';
+
+  
+
+  // Checking if search term exist in the posts array
+
+  if(isset($_POST['search-term'])) {
+    $postsTitle = "You searched for '" . $_POST['search-term'] . "'";
+    $posts = searchPosts($_POST['search-term']);
+  } else {
+    $posts = getPublishedPosts();
+  }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,84 +51,25 @@
         <i class="fas fa-chevron-right next"></i>
 
         <div class="post-wrapper">
+
+        <?php foreach ($posts as $post): ?>
           <div class="post">
-            <img src="assets/images/pic.jpg" alt="" class="slider-image" />
+          <!-- Pointing to the root folder where the images are stored, and we will just point to the name of the image from DB -->
+            <img src="<?php echo BASE_URL . '/assets/images/' . $post['image']; ?>" alt="" class="slider-image" />
             <div class="post-info">
               <h4>
-                <a href="single.html"
-                  >One day your life will flash before your eyes</a
-                >
+                <a href="single.html"><?php echo $post['title']; ?></a>                  
               </h4>
-              <i class="far fa-user">Strahinja Strajla</i>
+              <i class="far fa-user"><?php echo $post['username']; ?></i>
               &nbsp;
-              <i class="far fa-calendar"> May 9, 2019</i>
+              <!-- Calling string to time function and pasing the date when the post is created, and it will display it in certain format -->
+              <i class="far fa-calendar"><?php echo date('F j, Y', strtotime($post['created_at'])); ?></i>
             </div>
           </div>
-          <div class="post">
-            <img src="assets/images/pic.jpg" alt="" class="slider-image" />
-            <div class="post-info">
-              <h4>
-                <a href="single.html"
-                  >One day your life will flash before your eyes</a
-                >
-              </h4>
-              <i class="far fa-user">Strahinja Strajla</i>
-              &nbsp;
-              <i class="far fa-calendar"> May 9, 2019</i>
-            </div>
-          </div>
-          <div class="post">
-            <img src="assets/images/pic.jpg" alt="" class="slider-image" />
-            <div class="post-info">
-              <h4>
-                <a href="single.html"
-                  >One day your life will flash before your eyes</a
-                >
-              </h4>
-              <i class="far fa-user">Strahinja Strajla</i>
-              &nbsp;
-              <i class="far fa-calendar"> May 9, 2019</i>
-            </div>
-          </div>
-          <div class="post">
-            <img src="assets/images/pic.jpg" alt="" class="slider-image" />
-            <div class="post-info">
-              <h4>
-                <a href="single.html"
-                  >One day your life will flash before your eyes</a
-                >
-              </h4>
-              <i class="far fa-user">Strahinja Strajla</i>
-              &nbsp;
-              <i class="far fa-calendar"> May 9, 2019</i>
-            </div>
-          </div>
-          <div class="post">
-            <img src="assets/images/pic.jpg" alt="" class="slider-image" />
-            <div class="post-info">
-              <h4>
-                <a href="single.html"
-                  >One day your life will flash before your eyes</a
-                >
-              </h4>
-              <i class="far fa-user">Strahinja Strajla</i>
-              &nbsp;
-              <i class="far fa-calendar"> May 9, 2019</i>
-            </div>
-          </div>
-          <div class="post">
-            <img src="assets/images/pic.jpg" alt="" class="slider-image" />
-            <div class="post-info">
-              <h4>
-                <a href="single.html"
-                  >One day your life will flash before your eyes</a
-                >
-              </h4>
-              <i class="far fa-user">Strahinja Strajla</i>
-              &nbsp;
-              <i class="far fa-calendar"> May 9, 2019</i>
-            </div>
-          </div>
+
+        <?php endforeach; ?> 
+       
+         
         </div>
       </div>
 
@@ -122,97 +79,34 @@
 
       <div class="content clearfix">
         <div class="main-content">
-          <h1 class="recent-post-title">Recent Posts</h1>
+          <h1 class="recent-post-title"><?php echo $postsTitle ?></h1>
 
-          <div class="post clearfix">
-            <img src="assets/images/pic1.jpg" alt="" class="post-image" />
+          <?php foreach($posts as $post): ?>
+            <div class="post clearfix">
+            <img src="<?php echo BASE_URL . '/assets/images/' . $post['image']; ?>" alt="" class="post-image" />
             <div class="post-preview">
               <h2>
-                <a href="single.html"
-                  >Your character's biggest wish is to create a safe world for
-                  xir people.</a
-                >
+                <a href="single.html"><?php echo $post['title']; ?><a/>
               </h2>
-              <i class="far fa-user">Strahinja Strajla</i>
+              <i class="far fa-user"><?php echo $post['username']; ?></i>
               &nbsp;
-              <i class="far calendar">Mar 9, 2019</i>
+              <i class="far calendar"><?php echo date('F j, Y', strtotime($post['created_at'])); ?></i>
               <p class="preveiw-text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Quibusdam culpa sint iure reprehenderit aliquid atque autem
-                officiis, ipsum sed molestias, inventore quis sequi laborum
-                error ad iusto dignissimos nihil! Ipsam?
+              <!-- With use of this function we are able to display as much characters we want in the case lets say 150 -->
+                <?php echo html_entity_decode(substr($post['body'], 0, 250) . '...'); ?>
               </p>
               <a href="single.html" class="btn read-more">Read More</a>
             </div>
           </div>
-          <div class="post clearfix">
-            <img src="assets/images/pic2.jpg" alt="" class="post-image" />
-            <div class="post-preview">
-              <h2>
-                <a href="single.html"
-                  >Your character desperately wants to overthrow the
-                  government.</a
-                >
-              </h2>
-              <i class="far fa-user">Strahinja Strajla</i>
-              &nbsp;
-              <i class="far calendar">Mar 9, 2019</i>
-              <p class="preveiw-text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Quibusdam culpa sint iure reprehenderit aliquid atque autem
-                officiis, ipsum sed molestias, inventore quis sequi laborum
-                error ad iusto dignissimos nihil! Ipsam?
-              </p>
-              <a href="single.html" class="btn read-more">Read More</a>
-            </div>
-          </div>
-          <div class="post clearfix">
-            <img src="assets/images/pic3.jpg" alt="" class="post-image" />
-            <div class="post-preview">
-              <h2>
-                <a href="single.html"
-                  >Most of all, your character wants to be remembered.</a
-                >
-              </h2>
-              <i class="far fa-user">Strahinja Strajla</i>
-              &nbsp;
-              <i class="far calendar">Mar 9, 2019</i>
-              <p class="preveiw-text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Quibusdam culpa sint iure reprehenderit aliquid atque autem
-                officiis, ipsum sed molestias, inventore quis sequi laborum
-                error ad iusto dignissimos nihil! Ipsam?
-              </p>
-              <a href="single.html" class="btn read-more">Read More</a>
-            </div>
-          </div>
-          <div class="post clearfix">
-            <img src="assets/images/pic4.jpg" alt="" class="post-image" />
-            <div class="post-preview">
-              <h2>
-                <a href="single.html"
-                  >Your character's biggest wish is to seek out knowledge and
-                  discover new things.</a
-                >
-              </h2>
-              <i class="far fa-user">Strahinja Strajla</i>
-              &nbsp;
-              <i class="far calendar">Mar 9, 2019</i>
-              <p class="preveiw-text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Quibusdam culpa sint iure reprehenderit aliquid atque autem
-                officiis, ipsum sed molestias, inventore quis sequi laborum
-                error ad iusto dignissimos nihil! Ipsam?
-              </p>
-              <a href="single.html" class="btn read-more">Read More</a>
-            </div>
-          </div>
+          <?php endforeach; ?>
+
+        
         </div>
 
         <div class="sidebar">
           <div class="section search">
             <h2 class="section-title">Search</h2>
-            <form action="index.html" method="post">
+            <form action="index.php" method="post">
               <input
                 type="text"
                 name="search-term"

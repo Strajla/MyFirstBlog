@@ -160,3 +160,40 @@ function delete($table, $id) {
 
 // If we pass 1 in admin section, we will have 0 displays on our screen. Bcs
 // we dont have any user in our database that has admin status
+
+
+// Making another function se we can fetch name of the user from who created the post
+
+
+function getPublishedPosts() {
+    // since we are using db, we need to include db connection
+    global $conn;
+    // selecting all collums from posts table, and also we are selecting username colluum in user table,we are putting
+    // this together only in condtion where
+    // and we are performing  in cases where user id in post table is equal to the user id in users table
+    $sql = "SELECT p.*, u.username FROM posts as p JOIN users AS u ON p.user_id=u.id WHERE p.published=?";
+    $stmt = executeQuery($sql, ['published' => 1]);
+    $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    return $records;
+}
+
+
+
+// This $value is the word that user putted in search field
+function searchPosts($term) {
+
+    $match = '%' . $term . '%';
+    global $conn;
+    $sql = "SELECT
+                p.*, u.username
+                FROM posts AS p
+                JOIN users AS u
+                ON p.user_id=u.id
+                WHERE p.published=?
+                AND p.title LIKE ? OR p.body LIKE ?";
+// We are selecting from the users and posts table and joining, and making sure that we are seleciting
+// posts that are published, and we are making sure that title has certain string that looks like search term
+$stmt = executeQuery($sql, ['published' => 1, 'title' => $match, 'body' => $match]);
+$records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+return $records;
+}
