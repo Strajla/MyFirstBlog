@@ -294,17 +294,29 @@ header .menu-toggle {
   position: relative;
 }
 
+.content .main-content .post .post-preview i {
+  color: #757575;
+  font-size: .8em;
+}
+
 .content .popular .post {
   border-top: 1px solid #e0e0e0;
   margin-top: 10px;
   padding-top: 10px;
 }
 
+
 .content .popular .post img {
   height: 60px;
   width: 75px;
   float: left;
   margin-right: 10px;
+}
+
+.content .main-content .post .post-preview p {
+  line-height: 1.5em;
+  font-size: 1.03em;
+  color: #444;
 }
 
 .content .main-content .post .read-more {
@@ -327,6 +339,8 @@ header .menu-toggle {
   width: 40%;
   height: 100%;
   float: left;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 
 .content .main-content .post .post-preview {

@@ -1,6 +1,7 @@
-<?php 
+<?php
 
 include(ROOT_PATH . "/app/database/db.php");
+include(ROOT_PATH . "/app/helpers/middleware.php");
 include(ROOT_PATH . "/app/helpers/validateUser.php");
 
 
@@ -8,7 +9,7 @@ $table = 'users';
 
 // Fetching all admin users from database, here we are saying select all useers from table where admin is columt is true
 
-$admin_users = selectAll($table, ['admin' => 1]);
+$admin_users = selectAll($table);
 
 
 $errors = array();
@@ -20,37 +21,38 @@ $password = '';
 $passwordConf = '';
 
 
-function loginUser($user) {
-        $_SESSION['id'] = $user['id'];
-        // Here we are pulling username into session, bcs we want it to be displayed in navbar righ corner
-        $_SESSION['username'] = $user['username'];
-        $_SESSION['admin'] = $user['admin'];
-        // Here we need to pull admin, bcs we want to know is user is admin or no, so we can display dashboard or leave it blank
-        $_SESSION['message'] = 'You are now logged in';
-        $_SESSION['type'] = 'success';
-        // By giving it value of string named 'succes' we will be displaying green message, bcs we identify it as class in our css
-       
-        // If our user is admin, redirect him to dashboard, if he is regular user,redirect him to home page
-        if ($_SESSION['admin']) {
-            header('location: ' . BASE_URL . '/admin/dashboard.php');
-        }   else {
-            header('location: ' . BASE_URL . '/index.php');
-        }
+function loginUser($user)
+{
+    $_SESSION['id'] = $user['id'];
+    // Here we are pulling username into session, bcs we want it to be displayed in navbar righ corner
+    $_SESSION['username'] = $user['username'];
+    $_SESSION['admin'] = $user['admin'];
+    // Here we need to pull admin, bcs we want to know is user is admin or no, so we can display dashboard or leave it blank
+    $_SESSION['message'] = 'You are now logged in';
+    $_SESSION['type'] = 'success';
+    // By giving it value of string named 'succes' we will be displaying green message, bcs we identify it as class in our css
 
-        exit();
+    // If our user is admin, redirect him to dashboard, if he is regular user,redirect him to home page
+    if ($_SESSION['admin']) {
+        header('location: ' . BASE_URL . '/admin/dashboard.php');
+    } else {
+        header('location: ' . BASE_URL . '/index.php');
+    }
 
-        // There is no point of executing the code that comes after
+    exit();
+
+    // There is no point of executing the code that comes after
 }
 
 // Checking if the yser clicked on register button or we check also if they clicked on create admin POST
-if(isset($_POST['register-btn']) || isset($_POST['create-admin'])) {
+if (isset($_POST['register-btn']) || isset($_POST['create-admin'])) {
     $errors = validateUser($_POST);
-  
+
     // If number of errors is equal to 0, put data in database
     if (count($errors) === 0) {
-     // with this unset function we are removing atributes by passing name of the keys, because we dont have any collumnt in our db with that exact name
-    //  We are unseting create-admin input field, bcs we dont have any kind of that, we are passing it to to create function that takes our POST info.
-    // And it expext to create collum that dosent't exist in our users table.
+        // with this unset function we are removing atributes by passing name of the keys, because we dont have any collumnt in our db with that exact name
+        //  We are unseting create-admin input field, bcs we dont have any kind of that, we are passing it to to create function that takes our POST info.
+        // And it expext to create collum that dosent't exist in our users table.
         unset($_POST['register-btn'], $_POST['passwordConf'], $_POST['create-admin']);
         $_POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
         // This is for protecting our data, password encrtyption with this function, who takes 2paramteres
@@ -72,23 +74,23 @@ if(isset($_POST['register-btn']) || isset($_POST['create-admin'])) {
         } else {
             $_POST['admin'] = 0;
             $user_id = create($table, $_POST);
-            $user = selectOne($table, ['id'=> $user_id]);
+            $user = selectOne($table, ['id' => $user_id]);
             // Log user in, we will use sessions
             loginUser($user);
             // Here we are using selectOne and login user, bcs when we are creatin admin user, we dont need to login in asap
-        }   
+        }
     } else {
         $username = $_POST['username'];
         // Here we are checking if admin field is set, if it is, value will be 1 if its not it will be 0
-        $admin = isset ($_POST['admin']) ? 1 : 0;
+        $admin = isset($_POST['admin']) ? 1 : 0;
         $email = $_POST['email'];
         $password = $_POST['password'];
         $passwordConf = $_POST['passwordConf'];
     }
-  
 }
 
 if (isset($_POST['update-user'])) {
+    adminOnly();
     $errors = validateUser($_POST);
 
     if (count($errors) === 0) {
@@ -101,7 +103,6 @@ if (isset($_POST['update-user'])) {
         $_SESSION['type'] = 'success';
         header('location: ' . BASE_URL . '/admin/users/indexUsers.php');
         exit();
- 
     } else {
         $username =  $_POST['username'];
         $admin_users = isset($_POST['admin']) ? 1 : 0;
@@ -114,15 +115,15 @@ if (isset($_POST['update-user'])) {
 // Checkinf if GET variable called ID is set in GET SUPERGLOBAL then we will fetch that user from DB, using selectOne function from DB
 if (isset($_GET['id'])) {
     // passing name of the table and conditions where id is equal to the sent file in GET super global
-        $user = selectOne($table, ['id' => $_GET['id']]);
-        
-        // Fethincg it here, bcs we are putting in in form
-        $id = $user['id'];
-        // Assinging this 
-        $username =$user['username'];
-        // Here we are checking if admin field is set, if it is, value will be 1 if its not it will be 0
-        $admin = isset ($user['admin']) ? 1 : 0;
-        $email =$user['email'];
+    $user = selectOne($table, ['id' => $_GET['id']]);
+
+    // Fethincg it here, bcs we are putting in in form
+    $id = $user['id'];
+    // Assinging this 
+    $username = $user['username'];
+    // Here we are checking if admin field is set, if it is, value will be 1 if its not it will be 0
+    $admin = $user['admin'] == 1 ? 1 : 0;
+    $email = $user['email'];
 }
 
 
@@ -140,19 +141,19 @@ if (isset($_POST['login-btn'])) {
         // Function will return true
         if ($user && password_verify($_POST['password'], $user['password'])) {
             loginUser($user);
-        }   else {
+        } else {
             array_push($errors, 'Wrong credentials');
         }
     }
 
     $username = $_POST['username'];
     $password = $_POST['password'];
-    
 }
 
 
 // Checking if there is any variable in URL, like delete id, and if it exist then we will call delete function
 if (isset($_GET['delete_id'])) {
+    adminOnly();
     $count = delete($table, $_GET['delete_id']);
     $_SESSION['message'] = 'Admin user deleted';
     $_SESSION['type'] = 'success';
