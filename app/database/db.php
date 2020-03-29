@@ -176,7 +176,7 @@ function getPostsByTopicId($topic_id)
     global $conn;
     // Our method will select username and all atributes from the post and the users table under condition and where the articile is published and topic id is id id
     // of the topic user clicked on
-    $sql = "SELECT p.*, u.username FROM posts as p JOIN users AS u ON p.user_id=u.id WHERE p.published=? AND topic_id=?";
+    $sql = "SELECT p.*, u.username FROM posts as p JOIN users AS u ON p.user_id=u.id WHERE p.published=?  AND topic_id=? ORDER BY p.created_at ";
 
     $stmt = executeQuery($sql, ['published' => 1, 'topic_id' => $topic_id]);
     $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
@@ -190,13 +190,11 @@ function getPublishedPosts()
     // selecting all collums from posts table, and also we are selecting username colluum in user table,we are putting
     // this together only in condtion where
     // and we are performing  in cases where user id in post table is equal to the user id in users table
-    $sql = "SELECT p.*, u.username FROM posts as p JOIN users AS u ON p.user_id=u.id WHERE p.published=?";
+    $sql = "SELECT p.*, u.username FROM posts as p JOIN users AS u ON p.user_id=u.id WHERE p.published=? ORDER BY p.created_at DESC";
     $stmt = executeQuery($sql, ['published' => 1]);
     $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     return $records;
 }
-
-
 
 // This $value is the word that user putted in search field
 function searchPosts($term)
@@ -210,7 +208,7 @@ function searchPosts($term)
                 JOIN users AS u
                 ON p.user_id=u.id
                 WHERE p.published=?
-                AND p.title LIKE ? OR p.body LIKE ?";
+                AND p.title LIKE ? OR p.body LIKE ? ORDER BY p.created_at DESC";
     // We are selecting from the users and posts table and joining, and making sure that we are seleciting
     // posts that are published, and we are making sure that title has certain string that looks like search term
     $stmt = executeQuery($sql, ['published' => 1, 'title' => $match, 'body' => $match]);
