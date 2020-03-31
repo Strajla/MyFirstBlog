@@ -70,9 +70,11 @@ $posts = selectAll('posts', ['published' => 1]);
           <?php foreach ($posts as $singlePost) : ?>
             <div class="post clearfix">
               <img src="<?php echo BASE_URL . '/assets/images/' . $singlePost['image']; ?>" alt="" class="post-image" />
-              <a href="" class="title">
-                <h4><?php echo $singlePost['title']; ?></h4>
-              </a>
+
+              <h4>
+                <a href="single.php?id=<?php echo $singlePost['id']; ?> "><?php echo $singlePost['title']; ?><a />
+              </h4>
+
             </div>
           <?php endforeach; ?>
 
